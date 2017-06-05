@@ -11,3 +11,16 @@ test('deep freeze', function (t) {
     Buffer.prototype.z = 3;
     t.equal(Buffer.prototype.z, undefined);
 });
+
+test('assume no Object.prototype', function(t){
+    
+    t.plan(1);
+    const map = Object.create(null);
+
+    map.x = 5;
+
+    deepFreeze(map);
+    map.y = 6;
+
+    t.equal(Buffer.y, undefined);
+});
